@@ -1,5 +1,7 @@
 package com.example.root.SetCardGamev2;
 
+import android.support.v4.app.FragmentActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

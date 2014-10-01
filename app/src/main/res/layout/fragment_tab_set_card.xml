@@ -9,6 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="SetCardGame"
-        android:background="@android:color/holo_purple" />
+        android:background="#ff2b671e" />
 
 </FrameLayout>
