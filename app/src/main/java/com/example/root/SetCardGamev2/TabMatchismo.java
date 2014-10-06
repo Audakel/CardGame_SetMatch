@@ -1,6 +1,5 @@
 package com.example.root.SetCardGamev2;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.example.root.SetCardGamev2.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,7 +61,67 @@ public class TabMatchismo extends android.support.v4.app.Fragment {
     }
     public TabMatchismo() {
         // Required empty public constructor
+
     }
+
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+
+    }
+
+    private List<Button> cardButtons = new ArrayList<Button>();
+    private TextView flipCountView;
+    private TextView scoreCountView;
+    private TextView activityView;
+    private TextView activityView2;
+    private Button reDealButton;
+    int count;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View matchismoView = inflater.inflate(R.layout.fragment_tab_matchismo, container, false);
+
+        ViewGroup buttonGrid = (ViewGroup) matchismoView.findViewById(R.id.gridLayout);
+        flipCountView = (TextView) matchismoView.findViewById(R.id.flipCount);
+        scoreCountView = (TextView) matchismoView.findViewById(R.id.scoreView);
+        activityView = (TextView) matchismoView.findViewById(R.id.activityView);
+        countOfButtons = buttonGrid.getChildCount();
+        reDealButton = (Button) matchismoView.findViewById(R.id.redrawButton);
+
+        reDealButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawDeckButton(v);
+            }
+        });
+
+        for (int i = 0; i < countOfButtons; i ++) {
+            Button buttonBeingCreated = (Button) buttonGrid.getChildAt(i);
+            cardButtons.add(buttonBeingCreated);
+                buttonBeingCreated.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flipOneCard(v);
+                    }
+                });
+
+        }
+        drawDeck();
+        return matchismoView;
+    }
+
+
 //********************************************************************************************************
 
     // Constants
@@ -83,19 +140,16 @@ public class TabMatchismo extends android.support.v4.app.Fragment {
     private PlayingCard secondDraw = null;
     private PlayingCard activityLogCard;
     private PlayingCard activityLogCard2;
+    private int countOfButtons;
+    StoreGameResult gameResult;
 
     // "Outlets"
 
-    private List<Button> cardButtons;
-    private TextView flipCountView;
-    private TextView scoreCountView;
-    private TextView activityView;
-    private TextView activityView2;
-    int count;
+
 
 
     public void drawDeck() {
-        int numberOfCards = count;
+        int numberOfCards = countOfButtons;
         PlayingCardDeck playingCardDeck = new PlayingCardDeck();
 
         cardMap = new HashMap<Button, PlayingCard>();
@@ -103,11 +157,13 @@ public class TabMatchismo extends android.support.v4.app.Fragment {
         for (int i = 0; i < numberOfCards; i++) {
             cardMap.put(cardButtons.get(i), (PlayingCard) playingCardDeck.drawRandomCard());
         }
+        gameResult = new StoreGameResult();
     }
 
 
+
     public void drawDeckButton(View v) {
-        int numberOfCards = count;
+        int numberOfCards = countOfButtons;
         PlayingCardDeck playingCardDeck = new PlayingCardDeck();
 
         cardMap = new HashMap<Button, PlayingCard>();
@@ -120,6 +176,7 @@ public class TabMatchismo extends android.support.v4.app.Fragment {
         flipCount = 0;
         firstDraw = null;
         secondDraw = null;
+        gameResult = new StoreGameResult();
         updateUI();
     }
 
@@ -152,16 +209,16 @@ public class TabMatchismo extends android.support.v4.app.Fragment {
             if (currentCard.unplayable) {
                 cardImageButton.setBackgroundResource(R.drawable.blankplayingcard);
                 cardImageButton.setText(currentCard.getContents());
-                cardImageButton.setAlpha(50);
+                cardImageButton.setAlpha(100);
 
                 if (currentCard.redBlackColor == 0){cardImageButton.setTextColor(Color.GRAY);}
-                    else {cardImageButton.setTextColor(Color.rgb(255,102,102));}
+                    else {cardImageButton.setTextColor(Color.rgb(255,153,153));}
 
             }
 
             // Configure activity label (report of last action)
 
-            if (activityLogCard != null){
+            if (activityLogCard != null && activityView != null){
 
                 if (activityLogCard.redBlackColor == 0){activityView.setTextColor(Color.BLACK);}
                     else {activityView.setTextColor(Color.RED);}
@@ -185,9 +242,11 @@ public class TabMatchismo extends android.support.v4.app.Fragment {
 
         // Configure flip-count label
             flipCountView.setText("Flips: " + flipCount);
+
         // Configure score label
             scoreCountView.setText("Score: " + score);
 
+//        gameResult.save(score, "MATCH");
 
     }
 
@@ -228,23 +287,6 @@ public class TabMatchismo extends android.support.v4.app.Fragment {
 
 
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-
-            super.onCreate(savedInstanceState);
-
-            if (getArguments() != null) {
-                mParam1 = getArguments().getString(ARG_PARAM1);
-                mParam2 = getArguments().getString(ARG_PARAM2);
-            }
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            View matchismoView = inflater.inflate(R.layout.fragment_tab_matchismo, container, false);
-            return matchismoView;
-        }
 
 
 

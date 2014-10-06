@@ -7,164 +7,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:rowCount="4"
-        android:columnCount="4"
-        android:useDefaultMargins="true"
-        android:id="@+id/gridLayout"
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp">
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button1"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button2"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button3"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button4"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button5"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button6"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button7"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button8"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button9"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button10"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button11"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button12"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button13"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button14"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button15"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-        <Button
-            android:layout_width="58dp"
-            android:layout_height="85dp"
-            android:id="@+id/button16"
-            android:onClick="flipOneCard"
-            android:background="@drawable/bluecard"
-            android:textColor="@android:color/holo_red_dark"
-            android:padding="10dp" />
-
-    </GridLayout>
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -221,5 +63,148 @@
         android:padding="10dp"
         android:textColor="#c8ffffff"
         android:layout_gravity="center_horizontal|bottom" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:useDefaultMargins="true"
+        android:id="@+id/gridLayout"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:layout_gravity="right|top">
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button2"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button3"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button4"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button5"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button6"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button7"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button8"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button9"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button10"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button11"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button12"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button13"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button14"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button15"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:id="@+id/button16"
+            android:background="@drawable/bluecard"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="10dp" />
+
+    </GridLayout>
 
 </FrameLayout>

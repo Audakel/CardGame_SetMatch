@@ -1,14 +1,19 @@
 package com.example.root.SetCardGamev2;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.example.root.SetCardGamev2.R;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,12 +66,26 @@ public class TabScore extends android.support.v4.app.Fragment {
         }
     }
 
+
+
+    SortGameResult sortGameResult = new SortGameResult();
+    String[] gameResultArray = {""};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_score, container, false);
+        View tabScore = inflater.inflate(R.layout.fragment_tab_score, container, false);
+
+        gameResultArray = sortGameResult.sortResults(getActivity());
+        ListView scoreListView = (ListView) tabScore.findViewById(R.id.scoreListView);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, gameResultArray);
+        scoreListView.setAdapter(adapter1);
+
+        return tabScore;
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

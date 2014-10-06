@@ -1,7 +1,10 @@
 package com.example.root.SetCardGamev2;
 
 //import android.app.ActionBar;
+import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -10,6 +13,11 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.support.v7.app.ActionBar;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.Map;
+import java.util.Set;
 
 public class MyActivity extends FragmentActivity implements android.app.ActionBar.TabListener {
 
@@ -68,7 +76,10 @@ public class MyActivity extends FragmentActivity implements android.app.ActionBa
         actionBar.addTab(tabScore);
         actionBar.addTab(tabSettings);
 
+
+
     }
+
 
 
     @Override

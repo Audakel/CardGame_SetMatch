@@ -2,13 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.root.SetCardGamev2.TabSettings">
+    tools:context="com.example.root.SetCardGamev2.TabSettings"
+    android:background="#ffff3cf5">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="settings"
-        android:background="@android:color/holo_purple" />
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time Limit"
+        android:id="@+id/switch1"
+        android:layout_gravity="left|top"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keep  Score"
+        android:id="@+id/switch3"
+        android:layout_gravity="left|center_vertical"
+        android:checked="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sord by Game Date"
+        android:id="@+id/checkBox"
+        android:layout_gravity="left|bottom"
+        android:checked="false" />
 </FrameLayout>

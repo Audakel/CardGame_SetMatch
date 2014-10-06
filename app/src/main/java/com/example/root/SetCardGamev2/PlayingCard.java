@@ -1,5 +1,7 @@
 package com.example.root.SetCardGamev2;
 
+import android.content.Context;
+
 /**
  * Created by audakel on 9/30/14.
  */
@@ -8,24 +10,16 @@ public class PlayingCard extends Card {
     public int redBlackColor;
     public String suit;
 
-    void setContents() {
-        contents = rankStrings()[rank] + suit;
-    }
-
-    public String rankReturn = rankStrings()[rank];
-
 
     public static String[] rankStrings() {
         String[] s = {"6", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
         return s;
     }
 
-
     public static String[] validSuit() {
         String[] s = {"\u2665", "\u2666", "\u2663", "\u2660"};
         return s;
     }
-
 
     String getContents() {
         return rankStrings()[rank] + suit;
@@ -38,8 +32,8 @@ public class PlayingCard extends Card {
 
     public int compareCardsReturnScore(PlayingCard cardToCompare) {
         int FLIP_COST = 1;
-        int RANK_MATCH_BONUS = 4;
-        int SUIT_MATCH_BONUS = 2;
+        int RANK_MATCH_BONUS = 8;
+        int SUIT_MATCH_BONUS = 4;
         int MISMATCH_PENALTY = 1;
         int score = 0;
 

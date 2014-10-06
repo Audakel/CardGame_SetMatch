@@ -1,14 +1,20 @@
 package com.example.root.SetCardGamev2;
 
-import android.app.Activity;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-import com.example.root.SetCardGamev2.R;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,6 +58,7 @@ public class TabSetCard extends android.support.v4.app.Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +66,191 @@ public class TabSetCard extends android.support.v4.app.Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
+    private StoreGameResult storeGameResult = new StoreGameResult();
+    private String matchAlert = "";
+    private int gameScore = 1;
+    private int countOfButtons;
+    private Map<Button, SetCard> cardMap;
+    private List<Button> cardButtons = new ArrayList<Button>();
+    private List<Button> cardsTurnedUp = new ArrayList<Button>();
+    private TextView recentActivityVeiw;
+    private TextView matchUpdateView;
+    private TextView setText1;
+    private TextView setText2;
+    private TextView setText3;
+    private TextView setScoreView;
+    public View tabSetView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_set_card, container, false);
+                                 Bundle savedInstanceState) {
+            // Inflate the layout for this fragment
+            tabSetView = inflater.inflate(R.layout.fragment_tab_set_card, container, false);
+            ViewGroup setCardButtons = (ViewGroup) tabSetView.findViewById(R.id.setCardGrid);
+            Button startGameButton = (Button) tabSetView.findViewById(R.id.startGameSet);
+            recentActivityVeiw = (TextView) tabSetView.findViewById(R.id.activityViewSet);
+            matchUpdateView = (TextView) tabSetView.findViewById(R.id.matchViewSet);
+            setText1 = (TextView) tabSetView.findViewById(R.id.setTextView1);
+            setText2 = (TextView) tabSetView.findViewById(R.id.setTextView2);
+            setText3 = (TextView) tabSetView.findViewById(R.id.setTextView3);
+            setScoreView = (TextView) tabSetView.findViewById(R.id.setScoreVeiw);
+            int countOfButtons = setCardButtons.getChildCount();
+
+            for (int i = 0; i < countOfButtons; i ++) {
+                Button buttonBeingCreated = (Button) setCardButtons.getChildAt(i);
+                cardButtons.add(buttonBeingCreated);
+            }
+
+            startGameButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    drawDeck();
+                }
+            });
+
+
+            for (int i = 0 ; i < countOfButtons; i++){
+                Button buttonBeingCreated = (Button) setCardButtons.getChildAt(i);
+                buttonBeingCreated.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flipOneCard(v);
+                    }
+                });
+            }
+            return tabSetView;
+        }
+
+    public void flipOneCard(View v){
+        SetCard currentCard = cardMap.get(v);
+        currentCard.faceUp = (!currentCard.faceUp);
+
+        if (cardsTurnedUp.size() == 0){
+            matchAlert = "";
+        }
+        updateUI();
+
     }
+
+    public void updateUI(){
+
+        for (int i = 0; i < 16; i ++){
+            Button currentButton = cardButtons.get(i);
+            SetCard currentCard = cardMap.get(currentButton);
+
+            if (!currentCard.faceUp && !currentCard.unplayable){
+                currentButton.setBackgroundColor(Color.WHITE);
+
+                if (cardsTurnedUp.contains(currentButton)){
+                    cardsTurnedUp.remove(currentButton);
+                }
+            }
+
+            if (currentCard.faceUp && !currentCard.unplayable){
+                currentButton.setBackgroundColor(Color.rgb(224,224,224));
+
+                if (!cardsTurnedUp.contains(currentButton)){
+                    cardsTurnedUp.add(currentButton);
+                }
+            }
+
+            if (currentCard.unplayable){
+                currentButton.setTextColor(Color.WHITE);
+                currentButton.setBackgroundColor(Color.WHITE);
+            }
+        }
+
+        setText1.setText("");
+        setText2.setText("");
+        setText3.setText("");
+
+        if (cardsTurnedUp.size() >= 1 && cardsTurnedUp.get(0) != null){
+            setText1.setText(cardsTurnedUp.get(0).getText().toString() );
+            setText1.setTextColor(cardsTurnedUp.get(0).getCurrentTextColor());
+        }
+        if (cardsTurnedUp.size() >= 2 && cardsTurnedUp.get(1) != null){
+            setText2.setText(cardsTurnedUp.get(1).getText().toString() );
+            setText2.setTextColor(cardsTurnedUp.get(1).getCurrentTextColor());
+        }
+        if (cardsTurnedUp.size() >= 3 && cardsTurnedUp.get(2) != null){
+            setText3.setText(cardsTurnedUp.get(2).getText().toString() );
+            setText3.setTextColor(cardsTurnedUp.get(2).getCurrentTextColor());
+        }
+
+
+        if (cardsTurnedUp.size() >= 3){checkForMatch();}
+
+        setScoreView.setText("Score: " + gameScore);
+        matchUpdateView.setText(matchAlert);
+        storeGameResult.save(gameScore, "SET", getActivity());
+
+    }
+
+    public void checkForMatch(){
+        SetCard card1 = cardMap.get(cardsTurnedUp.get(0));
+        SetCard card2 = cardMap.get(cardsTurnedUp.get(1));
+        SetCard card3 = cardMap.get(cardsTurnedUp.get(2));
+        int turnScore;
+
+        turnScore =0;
+        turnScore = card1.compareCardsReturnScore(card2, card3);
+
+        if  (turnScore == -1){
+            gameScore += -1;
+            matchAlert = "No match :(";
+        }
+        else{
+            gameScore += 8;
+            matchAlert = "Match!!";
+            card1.unplayable = true;
+            card2.unplayable = true;
+            card3.unplayable = true;
+        }
+
+        card1.faceUp = false;
+        card2.faceUp = false;
+        card3.faceUp = false;
+        cardsTurnedUp.clear();
+        updateUI();
+    }
+
+    public void drawDeck() {
+        int numberOfCards = 16;
+        SetDeck setDeck= new SetDeck();
+
+        cardMap = new HashMap<Button, SetCard>();
+
+        for (int i = 0; i < numberOfCards; i++) {
+            cardMap.put(cardButtons.get(i), (SetCard) setDeck.drawRandomCard());
+            SetCard currentSetCard = cardMap.get(cardButtons.get(i));
+            Button currentButton = cardButtons.get(i);
+
+            int color = currentSetCard.getColor();
+            String shape = currentSetCard.getDisplayShape();
+
+            if (currentSetCard.number == 0){
+                currentButton.setText(shape);
+            } else if (currentSetCard.number == 1){
+                currentButton.setText(shape + shape);
+            }else if(currentSetCard.number == 2){
+                currentButton.setText(shape + shape + shape);
+            }
+
+            currentButton.setTextColor(color);
+            currentButton.setBackgroundColor(Color.WHITE);
+
+        }
+        gameScore += -1;
+        cardsTurnedUp.clear();
+        updateUI();
+        //gameResult = new GameResult();
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
