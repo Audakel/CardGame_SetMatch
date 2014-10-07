@@ -43,9 +43,11 @@ public class SortGameResult extends Activity{
 
                 setOfGameStats = prefs.getStringSet(key, setOfGameStats);
                 String[] arrayOfGameStats = setOfGameStats.toArray(new String[setOfGameStats.size()]);
+                String endGameDate = arrayOfGameStats[0];
+                String typeOfGame = arrayOfGameStats[1];
                 String gameScore = arrayOfGameStats[2];
-                gameResultArrayList.add((key));
-                gameResultArrayList.add("Score: " + gameScore);
+                //String startGameDate = arrayOfGameStats[3];
+                gameResultArrayList.add(typeOfGame + " Score: " + gameScore + "    " + endGameDate);
 
 
 

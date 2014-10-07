@@ -73,6 +73,9 @@ public class StoreGameResult extends Activity{
         setOfGameStats.add(gameType);
 
         setOfGameStats.add(Integer.toString(score));
+
+        setOfGameStats.add(simpleDateFormat.format(startGame));
+
     }
 
 }

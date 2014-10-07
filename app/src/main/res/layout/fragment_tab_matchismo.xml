@@ -24,10 +24,13 @@
         android:layout_height="wrap_content"
         android:text="Re-Deal"
         android:id="@+id/redrawButton"
-        android:textSize="10dp"
-        android:background="@android:color/darker_gray"
+        android:textSize="13dp"
+        android:background="#ffb2ffe2"
         android:onClick="drawDeckButton"
-        android:layout_gravity="right|bottom" />
+        android:layout_gravity="right|bottom"
+        android:textColor="#ff1b2d25"
+        android:padding="5dp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,9 +38,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Score: 0"
         android:id="@+id/scoreView"
-        android:textColor="#ffffffff"
+        android:textColor="#96ffffff"
         android:padding="5dp"
-        android:layout_gravity="left|bottom" />
+        android:layout_gravity="left|bottom"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,12 +49,13 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Flips: 0"
         android:id="@+id/flipCount"
-        android:textColor="@android:color/white"
+        android:textColor="#96ffffff"
         android:layout_gravity="bottom|left"
         android:paddingTop="30dp"
         android:paddingRight="30dp"
         android:paddingBottom="30dp"
-        android:paddingLeft="5dp" />
+        android:paddingLeft="5dp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,8 +66,9 @@
         android:singleLine="false"
         android:paddingLeft="50dp"
         android:padding="10dp"
-        android:textColor="#c8ffffff"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:textColor="#96ffffff"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textStyle="bold" />
 
     <GridLayout
         android:layout_width="match_parent"
@@ -206,5 +212,10 @@
             android:padding="10dp" />
 
     </GridLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="right|bottom"></TableLayout>
 
 </FrameLayout>

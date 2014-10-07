@@ -14,9 +14,12 @@
         android:layout_gravity="left|top" />
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scoreListView"
-        android:layout_gravity="left|top" />
+        android:layout_gravity="left|top"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector"/>
 
 </FrameLayout>

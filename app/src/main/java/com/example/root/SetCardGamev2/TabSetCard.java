@@ -83,6 +83,7 @@ public class TabSetCard extends android.support.v4.app.Fragment {
     private TextView setText3;
     private TextView setScoreView;
     public View tabSetView;
+    private int COUNT_OF_BUTTONS = 24;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -137,7 +138,7 @@ public class TabSetCard extends android.support.v4.app.Fragment {
 
     public void updateUI(){
 
-        for (int i = 0; i < 16; i ++){
+        for (int i = 0; i < COUNT_OF_BUTTONS; i ++){
             Button currentButton = cardButtons.get(i);
             SetCard currentCard = cardMap.get(currentButton);
 
@@ -218,7 +219,7 @@ public class TabSetCard extends android.support.v4.app.Fragment {
     }
 
     public void drawDeck() {
-        int numberOfCards = 16;
+        int numberOfCards = COUNT_OF_BUTTONS;
         SetDeck setDeck= new SetDeck();
 
         cardMap = new HashMap<Button, SetCard>();
